@@ -48,8 +48,8 @@ class User(AbstractUser):
         ]
         constraints = [
             models.CheckConstraint(
-                check=Q(followers_count__gte=0) & Q(following_count__gte=0),
-                name='user_counters_non_negative',
+            condition=Q(followers_count__gte=0) & Q(following_count__gte=0),
+            name='user_counters_non_negative',
             ),
         ]
 

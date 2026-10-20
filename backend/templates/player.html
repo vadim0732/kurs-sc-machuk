@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <title>Тест плеера</title>
     <style>
-        body { font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; }
-        .track { border: 1px solid #ccc; padding: 15px; margin-bottom: 15px; border-radius: 8px; }
-        audio { width: 100%; margin-top: 10px; }
-        img { max-width: 100px; border-radius: 4px; }
+        body { font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; background: #f9f9f9; }
+        .track { background: white; border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        audio { width: 100%; margin-top: 15px; }
+        img { max-width: 120px; border-radius: 6px; float: left; margin-right: 15px; }
+        .track-info { overflow: hidden; }
+        .actions { margin-top: 15px; display: flex; gap: 10px; align-items: center; }
+        .like-btn { background: #ff4757; color: white; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: bold; }
+        .like-btn:hover { background: #ff6b81; }
+        .comments-section { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; }
+        .comment { background: #f1f2f6; padding: 10px; border-radius: 6px; margin-bottom: 10px; font-size: 14px; }
+        .comment-form { display: flex; gap: 10px; margin-top: 10px; }
+        .comment-form input { flex-grow: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        .comment-form button { padding: 8px 16px; background: #2ed573; color: white; border: none; border-radius: 4px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -16,24 +25,113 @@
 
     <script>
         async function loadTracks() {
-            const response = await fetch('/api/tracks/');
-            const tracks = await response.json();
-            
-            const container = document.getElementById('tracks');
-            container.innerHTML = '';
-            
-            tracks.forEach(track => {
-                const div = document.createElement('div');
-                div.className = 'track';
-                div.innerHTML = `
-                    <h3>${track.title}</h3>
-                    <p>Артист: ${track.user} | Жанр: ${track.genre || '—'}</p>
-                    ${track.artwork_url ? `<img src="${track.artwork_url}" alt="cover">` : ''}
-                    <audio controls src="${track.audio_url}"></audio>
-                `;
-                container.appendChild(div);
-            });
+            try {
+                const response = await fetch('/api/tracks/');
+                const tracks = await response.json();
+                const container = document.getElementById('tracks');
+                container.innerHTML = '';
+                
+                if (tracks.length === 0) {
+                    container.innerHTML = '<p>Треков пока нет. Загрузите трек в админке.</p>';
+                    return;
+                }
+
+                for (const track of tracks) {
+                    const div = document.createElement('div');
+                    div.className = 'track';
+                    div.innerHTML = `
+                        <div>
+                            ${track.artwork_url ? `<img src="${track.artwork_url}" alt="cover">` : ''}
+                            <div class="track-info">
+                                <h3>${track.title}</h3>
+                                <p>Артист: ${track.user} | Жанр: ${track.genre || '—'}</p>
+                            </div>
+                        </div>
+                        <audio controls preload="metadata">
+                            <source src="${track.audio_url}" type="audio/mpeg">
+                        </audio>
+                        <div class="actions">
+                            <button class="like-btn" onclick="toggleLike(${track.id})">
+                                ❤️ Лайк (<span id="likes-count-${track.id}">${track.likes_count || 0}</span>)
+                            </button>
+                        </div>
+                        
+                        <div class="comments-section">
+                            <h4>Комментарии:</h4>
+                            <div id="comments-list-${track.id}">Загрузка...</div>
+                            <div class="comment-form">
+                                <input type="text" id="comment-input-${track.id}" placeholder="Написать комментарий...">
+                                <button onclick="postComment(${track.id})">Отправить</button>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                    loadComments(track.id);
+                }
+            } catch (error) {
+                document.getElementById('tracks').innerHTML = `<p style="color:red">Ошибка: ${error.message}</p>`;
+            }
         }
+
+        async function toggleLike(trackId) {
+            try {
+                const response = await fetch(`/api/tracks/${trackId}/like/`);
+                const data = await response.json();
+                if (data.likes_count !== undefined) {
+                    document.getElementById(`likes-count-${trackId}`).innerText = data.likes_count;
+                }
+            } catch (error) {
+                alert('Ошибка при лайке: ' + error.message);
+            }
+        }
+
+        async function loadComments(trackId) {
+            try {
+                const response = await fetch(`/api/tracks/${trackId}/comments/`);
+                const comments = await response.json();
+                const list = document.getElementById(`comments-list-${trackId}`);
+                list.innerHTML = '';
+                
+                if (comments.length === 0) {
+                    list.innerHTML = '<p style="font-size:14px; color:#888;">Пока нет комментариев.</p>';
+                    return;
+                }
+
+                comments.forEach(c => {
+                    const div = document.createElement('div');
+                    div.className = 'comment';
+                    div.innerHTML = `<strong>${c.user}</strong>: ${c.body}`;
+                    list.appendChild(div);
+                });
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        async function postComment(trackId) {
+            const input = document.getElementById(`comment-input-${trackId}`);
+            const body = input.value.trim();
+            if (!body) return;
+
+            try {
+                const response = await fetch(`/api/tracks/${trackId}/comments/`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ body: body })
+                });
+                
+                if (response.ok) {
+                    input.value = ''; 
+                    loadComments(trackId); 
+                } else {
+                    const errData = await response.json();
+                    alert('Ошибка при отправке: ' + JSON.stringify(errData));
+                }
+            } catch (error) {
+                alert('Ошибка сети: ' + error.message);
+            }
+        }
+
         loadTracks();
     </script>
 </body>

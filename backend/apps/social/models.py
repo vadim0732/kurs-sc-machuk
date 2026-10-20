@@ -21,8 +21,8 @@ class Follow(models.Model):
         unique_together = ('follower', 'following')
         constraints = [
             models.CheckConstraint(
-                check=~Q(follower=models.F('following')),
-                name='prevent_self_follow'
+            condition=~Q(follower=models.F('following')),
+            name='prevent_self_follow'
             ),
         ]
 
@@ -59,7 +59,7 @@ class Comment(models.Model):
         db_table = 'social_comment'
         ordering = ['created_at']
         constraints = [
-            models.CheckConstraint(check=Q(depth__lte=2), name='comment_max_depth_2'),
+            models.CheckConstraint(condition=Q(depth__lte=2), name='comment_max_depth_2'),
         ]
 
     def __str__(self):

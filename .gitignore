@@ -7,7 +7,6 @@ venv/
 # Django
 db.sqlite3
 *.log
-media/
 
 # Секреты
 .env

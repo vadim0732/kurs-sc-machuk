@@ -1,0 +1,300 @@
+[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2026-10-19T20:57:01.566Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "Pop",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2026-10-19T20:57:08.714Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "Alternative Rap",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2026-10-19T20:57:18.122Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "Alternative Pop",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2026-10-19T20:57:31.463Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "Alternative",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2026-10-19T20:57:44.242Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Acoustic",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2026-10-19T21:02:21.320Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "конструктор",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2026-11-01T15:06:12.079Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "1",
+    "object_repr": "snowship",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"playlist track\", \"object\": \"\\u043a\\u043e\\u043d\\u0441\\u0442\\u0440\\u0443\\u043a\\u0442\\u043e\\u0440 \\u0432 snowship\"}}]"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "j4xen2acvkjovot4b5pzkyk7yt92lcjf",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hAoUwSX7nsGMsCMVA0kpV0Z765NutDtf-_9lwi4rSVsnZYwZ3ERWpx-t4jpQXUH-Y711mRqdV3mKHdFHrTLqWV6Xg_376BgL986MSCf1cCktHJJkffA3rtkLcBAoIGMtp5BK3QO1AjRjkiQYmY2Jov3B9bNN6o:1xIuCo:ejSqg4WfeY6H179e-jquVBfDSBriJx_8ZzuIb3lzGTw",
+    "expire_date": "2026-11-02T20:43:38.078Z"
+  }
+},
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$720000$wRbyNgD00leD36Ep0LwlAM$pmELZawlBDbGP6lCR2cAaHKj7Q8IKyW5+weAT2yLw38=",
+    "last_login": "2026-10-19T20:43:38.073Z",
+    "is_superuser": true,
+    "username": "vadim",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-10-19T20:43:00.220Z",
+    "email": "suhomlin07@yandex.ru",
+    "avatar": "",
+    "bio": "",
+    "is_banned": false,
+    "followers_count": 0,
+    "following_count": 0,
+    "is_deleted": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$cBaXDtyE8r7gITmciiRvHj$U9/XvrgAbhrTAdukMgV4Ta007tHunTCau9obhHe4WvM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Темный принц",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-11-01T15:14:00.119Z",
+    "email": "test3@test.com",
+    "avatar": "avatars/photo_2026-10-24_16-55-59.jpg",
+    "bio": "",
+    "is_banned": false,
+    "followers_count": 0,
+    "following_count": 0,
+    "is_deleted": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "music.genre",
+  "pk": 1,
+  "fields": {
+    "name": "Pop",
+    "slug": "pop"
+  }
+},
+{
+  "model": "music.genre",
+  "pk": 2,
+  "fields": {
+    "name": "Alternative Rap",
+    "slug": "alternative-rap"
+  }
+},
+{
+  "model": "music.genre",
+  "pk": 3,
+  "fields": {
+    "name": "Alternative Pop",
+    "slug": "alternative-pop"
+  }
+},
+{
+  "model": "music.genre",
+  "pk": 4,
+  "fields": {
+    "name": "Alternative",
+    "slug": "alternative"
+  }
+},
+{
+  "model": "music.genre",
+  "pk": 5,
+  "fields": {
+    "name": "Acoustic",
+    "slug": "acoustic"
+  }
+},
+{
+  "model": "music.track",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "genre": 1,
+    "title": "конструктор",
+    "description": "Смысл песни «конструктор» — это метафорическое, мрачное размышление о попытке воссоздать утраченного человека или чувства к нему. Лирический герой словно занимается «сборкой» кого-то из прошлого, используя образы, воспоминания и даже физические детали, пытаясь найти что-то похожее в других.",
+    "audio_file": "tracks/2026/10/tjomnyjj_princ_ashleyrossmith_-_konstruktor_81871765.mp3",
+    "artwork": "artwork/2026/10/maxresdefault.jpg",
+    "duration": 0,
+    "waveform_data": null,
+    "status": "pending",
+    "is_public": true,
+    "track_number": null,
+    "plays_count": 0,
+    "likes_count": 2,
+    "comments_count": 0,
+    "is_deleted": false,
+    "created_at": "2026-10-19T21:02:21.318Z",
+    "updated_at": "2026-10-19T21:02:21.318Z"
+  }
+},
+{
+  "model": "music.track",
+  "pk": 2,
+  "fields": {
+    "user": 2,
+    "genre": 3,
+    "title": "Утекай",
+    "description": "",
+    "audio_file": "tracks/2026/11/Тёмный_принц_-_утекай_hitmos.fm.mp3",
+    "artwork": "artwork/2026/11/m1000x1000.webp",
+    "duration": 0,
+    "waveform_data": null,
+    "status": "ready",
+    "is_public": true,
+    "track_number": null,
+    "plays_count": 0,
+    "likes_count": 1,
+    "comments_count": 1,
+    "is_deleted": false,
+    "created_at": "2026-11-08T16:42:04.467Z",
+    "updated_at": "2026-11-08T16:42:04.467Z"
+  }
+},
+{
+  "model": "music.playlist",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "title": "snowship",
+    "description": "вававава",
+    "artwork": "",
+    "is_public": true,
+    "is_deleted": false,
+    "created_at": "2026-11-01T15:06:12.077Z",
+    "updated_at": "2026-11-01T15:06:12.077Z"
+  }
+},
+{
+  "model": "music.playlisttrack",
+  "pk": 1,
+  "fields": {
+    "playlist": 1,
+    "track": 1,
+    "order": "1E-20",
+    "added_at": "2026-11-01T15:06:12.078Z"
+  }
+},
+{
+  "model": "social.like",
+  "pk": 25,
+  "fields": {
+    "user": 1,
+    "track": 1,
+    "created_at": "2026-11-01T15:43:25.037Z"
+  }
+},
+{
+  "model": "social.like",
+  "pk": 47,
+  "fields": {
+    "user": 2,
+    "track": 2,
+    "created_at": "2026-11-08T17:08:01.258Z"
+  }
+},
+{
+  "model": "social.like",
+  "pk": 49,
+  "fields": {
+    "user": 2,
+    "track": 1,
+    "created_at": "2026-11-08T17:25:29.996Z"
+  }
+},
+{
+  "model": "social.comment",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "track": 2,
+    "parent": null,
+    "body": "крутой трек",
+    "timestamp_ms": null,
+    "depth": 0,
+    "is_deleted": false,
+    "created_at": "2026-11-08T17:04:14.639Z"
+  }
+}
+]

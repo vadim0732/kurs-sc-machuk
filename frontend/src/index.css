@@ -84,3 +84,20 @@ input[type=range]::-webkit-slider-runnable-track {
 .animation-delay-4000 {
   animation-delay: 4s;
 }
+
+/* Анимация для визуализатора (через масштабирование) */
+@keyframes equalizer {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
+.animate-equalizer {
+  animation: equalizer 0.8s ease-in-out infinite;
+  height: 100%;
+}
+
+.animate-paused {
+  transform: scaleY(0.3);
+  height: 100%;
+  transition: transform 0.3s ease;
+}

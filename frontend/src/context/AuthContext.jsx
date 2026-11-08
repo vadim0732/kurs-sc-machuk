@@ -8,24 +8,34 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // При загрузке проверяем, есть ли токен
     const token = localStorage.getItem('access_token');
     if (token) {
-      // В будущем здесь можно запросить /api/auth/me/ чтобы получить данные юзера
-      setUser({ token });
+      try {
+        // Декодируем токен, чтобы достать ID пользователя
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        setUser({ token, id: payload.user_id });
+      } catch (e) {
+        localStorage.removeItem('access_token');
+      }
     }
     setLoading(false);
   }, []);
 
-const login = async (email, password) => {
-  const response = await api.post('/auth/login/', { email, password });
-  localStorage.setItem('access_token', response.data.access);
-  setUser({ token: response.data.access });
-};
+  const login = async (email, password) => {
+    const response = await api.post('/auth/login/', { email, password });
+    const token = response.data.access;
+    localStorage.setItem('access_token', token);
+    
+    // Достаем ID из токена
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    setUser({ token, id: payload.user_id });
+  };
 
   const logout = () => {
     localStorage.removeItem('access_token');
     setUser(null);
+    window.location.href = '/';
+    
   };
 
   return (
